@@ -1,0 +1,181 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram id="S1R2A6H9M1V3N8K0P_V1" name="Page-1_Detailed">
+    <mxGraphModel dx="1089" dy="546" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg_gameObjects_title" value="Paquete: gameObjects" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="10" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_GameObject" value="&lt;i&gt;GameObject&lt;/i&gt;&lt;br&gt;&lt;hr&gt;# position: Vector2D&lt;br&gt;# texture: BufferedImage&lt;hr&gt;+ GameObject(pos: Vector2D, tex: BufferedImage)&lt;br&gt;+ &lt;i&gt;update(dt: float): void&lt;/i&gt;&lt;br&gt;+ &lt;i&gt;draw(g: Graphics): void&lt;/i&gt;&lt;br&gt;+ getPosition(): Vector2D&lt;br&gt;+ setPosition(pos: Vector2D): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=150;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_MovingObject" value="&lt;i&gt;MovingObject&lt;/i&gt;&lt;br&gt;&lt;hr&gt;# velocity: Vector2D&lt;br&gt;# angle: double&lt;br&gt;# maxVel: double&lt;br&gt;# width: int&lt;br&gt;# height: int&lt;br&gt;# gameState: GameState&lt;br&gt;# Dead: boolean&lt;br&gt;# explosion: Sound&lt;br&gt;&lt;i&gt;(Collision logic now checks if Laser is from enemy for Player collisions)&lt;/i&gt;&lt;hr&gt;+ MovingObject(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;# collidesWith(): void&lt;br&gt;# Destroy(): void&lt;br&gt;# getCenter(): Vector2D&lt;br&gt;+ isDead(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=290;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="400" y="220" width="320" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Moving_GameObject" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="cls_MovingObject" target="cls_GameObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="230" as="sourcePoint" />
+            <mxPoint x="180" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="210" />
+              <mxPoint x="180" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_Player" value="Player&lt;br&gt;&lt;hr&gt;- heading: Vector2D&lt;br&gt;- acceleration: Vector2D&lt;br&gt;- accelerating: boolean&lt;br&gt;- fireRate: long&lt;br&gt;- spawning: boolean&lt;br&gt;- shieldOn: boolean&lt;br&gt;...&lt;br&gt; (Texture changes with difficulty, fires non-enemy lasers)&lt;hr&gt;+ Player(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ Destroy(): void&lt;br&gt;+ setShield(): void&lt;br&gt;+ isSpawning(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=280;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="520" width="260" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Player_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_Player" target="cls_MovingObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="500" as="sourcePoint" />
+            <mxPoint x="560" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="170" y="500" />
+              <mxPoint x="560" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_Meteor" value="Meteor&lt;br&gt;&lt;hr&gt;- size: Size&lt;hr&gt;+ Meteor(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState, size: Size)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ Destroy(): void&lt;br&gt;+ getSize(): Size" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=180;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="310" y="520" width="280" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Meteor_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_Meteor" target="cls_MovingObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="500" as="sourcePoint" />
+            <mxPoint x="560" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="450" y="500" />
+              <mxPoint x="560" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_Ufo" value="Ufo&lt;br&gt;&lt;hr&gt;- path: ArrayList&amp;lt;Vector2D&amp;gt;&lt;br&gt;- currentNode: Vector2D&lt;br&gt;- fireRate: long&lt;br&gt;(Speed varies with difficulty, fires enemy lasers)&lt;hr&gt;+ Ufo(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, path: ArrayList&amp;lt;Vector2D&amp;gt;, gs: GameState)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ Destroy(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=180;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="600" y="520" width="360" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Ufo_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_Ufo" target="cls_MovingObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="500" as="sourcePoint" />
+            <mxPoint x="560" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="780" y="500" />
+              <mxPoint x="560" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_Laser" value="Laser&lt;br&gt;&lt;hr&gt;- isEnemy: boolean&lt;br&gt;(Texture changes with difficulty)&lt;hr&gt;+ Laser(pos: Vector2D, vel: Vector2D, maxVel: double, angle: double, tex: BufferedImage, gs: GameState, isEnemy: boolean)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ getCenter(): Vector2D&lt;br&gt;+ isEnemy(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=190;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="970" y="520" width="380" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Laser_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_Laser" target="cls_MovingObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="500" as="sourcePoint" />
+            <mxPoint x="560" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1160" y="500" />
+              <mxPoint x="560" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_PowerUp" value="PowerUp&lt;br&gt;&lt;hr&gt;- duration: long&lt;br&gt;- action: Action&lt;hr&gt;+ PowerUp(pos: Vector2D, tex: BufferedImage, action: Action, gs: GameState)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;# executeAction(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=160;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="1360" y="520" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_PowerUp_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_PowerUp" target="cls_MovingObject" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1510" y="500" as="sourcePoint" />
+            <mxPoint x="560" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1510" y="500" />
+              <mxPoint x="560" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_Constants_GameObject" value="Constants&lt;br&gt;&lt;hr&gt;...&lt;br&gt;+ {static} UFO_MAX_VEL: int (value per difficulty)&lt;br&gt;...&lt;hr&gt;+ {static} setDifficulty(difficulty: String): void &lt;i&gt;(adjusts speeds, tells Assets to change textures)&lt;/i&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=120;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="220" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg_states_title" value="Paquete: states" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="800" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_State" value="&lt;i&gt;State&lt;/i&gt;&lt;br&gt;&lt;hr&gt;- {static} currentState: State&lt;hr&gt;+ &lt;i&gt;update(dt: float): void&lt;/i&gt;&lt;br&gt;+ &lt;i&gt;draw(g: Graphics): void&lt;/i&gt;&lt;br&gt;+ {static} getCurrentState(): State&lt;br&gt;+ {static} changeState(newState: State): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="840" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_GameState" value="GameState&lt;br&gt;&lt;hr&gt;- player: Player&lt;br&gt;- movingObjects: ArrayList&amp;lt;MovingObject&amp;gt;&lt;br&gt;- score: int&lt;br&gt;- lives: int&lt;br&gt;- meteors: int&lt;br&gt;- isPaused: boolean&lt;hr&gt;+ GameState()&lt;br&gt;+ update(dt: float): void &lt;i&gt;(handles pause input)&lt;/i&gt;&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ addScore(value: int, pos: Vector2D): void&lt;br&gt;+ divideMeteor(meteor: Meteor): void&lt;br&gt;+ gameOver(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=230;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="360" y="1010" width="320" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Game_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_GameState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="990" as="sourcePoint" />
+            <mxPoint x="190" y="980" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="520" y="990" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_MenuState" value="MenuState&lt;br&gt;&lt;hr&gt;- buttons: ArrayList&amp;lt;Button&amp;gt;&lt;br&gt;(Includes Controls &amp;amp; Difficulty buttons)&lt;hr&gt;+ MenuState()&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="690" y="1010" width="240" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Menu_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_MenuState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="990" as="sourcePoint" />
+            <mxPoint x="190" y="980" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="810" y="990" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_ScoreState" value="ScoreState&lt;br&gt;&lt;hr&gt;- returnButton: Button&lt;br&gt;- highScores: PriorityQueue&amp;lt;ScoreData&amp;gt;&lt;hr&gt;+ ScoreState()&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="940" y="1010" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Score_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_ScoreState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1080" y="990" as="sourcePoint" />
+            <mxPoint x="190" y="980" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1080" y="990" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_LoadingState" value="LoadingState&lt;br&gt;&lt;hr&gt;- loadingThread: Thread&lt;br&gt;- font: Font&lt;hr&gt;+ LoadingState(loadingThread: Thread)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="1010" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Loading_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_LoadingState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1360" y="990" as="sourcePoint" />
+            <mxPoint x="190" y="980" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1360" y="990" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_ControlsState" value="ControlsState&lt;br&gt;&lt;hr&gt;- backButton: Button&lt;hr&gt;+ ControlsState()&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1270" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Controls_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_ControlsState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="1250" as="sourcePoint" />
+            <mxPoint x="190" y="990" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="1250" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cls_PauseMenuState" value="PauseMenuState&lt;br&gt;&lt;hr&gt;- resumeButton: Button&lt;br&gt;- restartButton: Button&lt;br&gt;- menuButton: Button&lt;hr&gt;+ PauseMenuState()&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=160;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="360" y="1270" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_PauseMenu_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_PauseMenuState" target="cls_State" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="1250" as="sourcePoint" />
+            <mxPoint x="190" y="990" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="510" y="1250" />
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

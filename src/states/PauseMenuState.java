@@ -38,22 +38,25 @@ public class PauseMenuState extends State {
         this.previousGameState = gameState;
         buttons = new ArrayList<Button>();
 
-        int buttonSpacing = (int)(Assets.greyBtn.getHeight() * 1.5);
+        int buttonSpacing = (int)(Assets.greyBtn.getHeight() * 1.5); // Espaciado entre botones
         int centerX = Constants.WIDTH / 2 - Assets.greyBtn.getWidth() / 2;
-        int centerY = Constants.HEIGHT / 2;
+        
+        // Calcular Y inicial para centrar verticalmente los botones RESUME y CONTROLS
+        int topButtonsHeight = Assets.greyBtn.getHeight() * 2 + buttonSpacing; 
+        int startYResumeControls = (Constants.HEIGHT - topButtonsHeight) / 2;
 
         // Botón REANUDAR
         buttons.add(new Button(
                 Assets.greyBtn,
                 Assets.blueBtn,
                 centerX,
-                centerY - buttonSpacing,
+                startYResumeControls, // Posición Y del primer botón (Resume)
                 "RESUME",
                 new Action() {
                     @Override
                     public void doAction() {
                         if (previousGameState != null) {
-                            previousGameState.setPaused(false); // Desactivar bandera interna de pausa si existe
+                            previousGameState.setPaused(false);
                             State.changeState(previousGameState);
                         }
                     }
@@ -65,29 +68,37 @@ public class PauseMenuState extends State {
                 Assets.greyBtn,
                 Assets.blueBtn,
                 centerX,
-                centerY, // Botón centrado
+                startYResumeControls + Assets.greyBtn.getHeight() + buttonSpacing, // Posición Y del segundo botón (Controls)
                 "CONTROLS",
                 new Action() {
                     @Override
                     public void doAction() {
-                        State.changeState(new ControlsState()); // El retorno de ControlsState irá a MenuState
+                        State.changeState(new ControlsState(PauseMenuState.this));
                     }
                 }
         ));
 
-        // Botón VOLVER AL LOBBY
+        // Botón VOLVER AL LOBBY (Nueva Posición: Inferior Izquierda)
         buttons.add(new Button(
                 Assets.greyBtn,
                 Assets.blueBtn,
-                centerX,
-                centerY + buttonSpacing,
+                Assets.greyBtn.getHeight(), // X: Margen izquierdo
+                Constants.HEIGHT - Assets.greyBtn.getHeight() * 2, // Y: Margen inferior
                 "RETURN LOBBY",
                 new Action() {
                     @Override
                     public void doAction() {
-                        // Asegurar que la música de fondo de GameState se detenga si estaba sonando
-                        previousGameState.stopMusic(); 
-                        State.changeState(new MenuState());
+                        try {
+                            if (previousGameState != null) {
+                                previousGameState.stopMusic();
+                            } else {
+                                System.out.println("PauseMenuState: previousGameState es null al intentar volver al lobby.");
+                            }
+                            State.changeState(new MenuState());
+                        } catch (Exception e) {
+                            System.err.println("Error al cambiar a MenuState desde PauseMenuState:");
+                            e.printStackTrace();
+                        }
                     }
                 }
         ));

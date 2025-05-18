@@ -402,7 +402,8 @@ public class GameState extends State{
 			
 			try {
 				ArrayList<ScoreData> dataList = JSONParser.readFile();
-				dataList.add(new ScoreData(score));
+				dataList.add(new ScoreData(score, Constants.currentDifficulty));
+				dataList.sort((d1, d2) -> Integer.compare(d2.getScore(), d1.getScore()));
 				JSONParser.writeFile(dataList);
 			} catch (IOException e) {
 				e.printStackTrace();

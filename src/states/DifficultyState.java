@@ -89,8 +89,8 @@ public class DifficultyState extends State {
         buttons.add(new Button(
                 Assets.greyBtn,
                 Assets.blueBtn,
-                Constants.WIDTH / 2 - Assets.greyBtn.getWidth() / 2,
-                Constants.HEIGHT / 2 + Assets.greyBtn.getHeight() * 3, // Posicionado en la parte inferior
+                Assets.greyBtn.getHeight(), // X: Align to left with margin
+                Constants.HEIGHT - Assets.greyBtn.getHeight() * 2, // Y: Align to bottom with margin
                 Constants.RETURN, // Reusar constante RETURN existente
                 new Action() {
                     @Override

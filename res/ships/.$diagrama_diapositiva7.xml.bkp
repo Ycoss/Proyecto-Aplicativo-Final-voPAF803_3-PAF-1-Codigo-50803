@@ -1,0 +1,23 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram id="D7_Player_MovingObject" name="Player_Inheritance">
+    <mxGraphModel dx="1281" dy="642" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cls_MovingObject" value="&lt;i&gt;MovingObject&lt;/i&gt;&lt;br&gt;&lt;hr&gt;# velocity: Vector2D&lt;br&gt;# angle: double&lt;br&gt;# maxVel: double&lt;br&gt;# width: int&lt;br&gt;# height: int&lt;br&gt;# gameState: GameState&lt;br&gt;# Dead: boolean&lt;br&gt;- explosion: Sound&lt;br&gt;# at: AffineTransform&lt;br&gt;# texture: BufferedImage &lt;i&gt;(from GameObject)&lt;br&gt;&lt;i&gt;(Collision logic handles Player-Laser based on Laser's isEnemy flag)&lt;/i&gt;&lt;hr&gt;+ MovingObject(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;+ &lt;i&gt;update(dt: float): void&lt;/i&gt; (from GameObject)&lt;br&gt;+ &lt;i&gt;draw(g: Graphics): void&lt;/i&gt; (from GameObject)&lt;br&gt;# collidesWith(): void&lt;br&gt;# Destroy(): void&lt;br&gt;# getCenter(): Vector2D&lt;br&gt;+ isDead(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=370;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="100" y="80" width="420" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_Player" value="Player&lt;br&gt;&lt;hr&gt;- heading: Vector2D&lt;br&gt;- acceleration: Vector2D&lt;br&gt;- accelerating: boolean&lt;br&gt;- fireRate: long&lt;br&gt;- fireSpeed: long&lt;br&gt;- spawning: boolean&lt;br&gt;- visible: boolean&lt;br&gt;- shieldOn: boolean&lt;br&gt;- doubleScoreOn: boolean&lt;br&gt;- fastFireOn: boolean&lt;br&gt;- doubleGunOn: boolean&lt;br&gt;- spawnTime: long&lt;br&gt;- flickerTime: long&lt;br&gt;- shieldTime: long&lt;br&gt;- doubleScoreTime: long&lt;br&gt;- fastFireTime: long&lt;br&gt;- doubleGunTime: long&lt;br&gt;- shoot: Sound&lt;br&gt;- loose: Sound&lt;br&gt;- shieldEffect: Animation&lt;br&gt;&lt;i&gt;(Uses difficulty-specific texture, e.g., blue, green, red; fires non-enemy lasers)&lt;/i&gt;&lt;hr&gt;+ Player(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;+ update(dt: float): void &lt;i&gt;(Overrides MovingObject.update)&lt;/i&gt;&lt;br&gt;+ draw(g: Graphics): void &lt;i&gt;(Overrides MovingObject.draw, selects texture based on difficulty)&lt;/i&gt;&lt;br&gt;+ Destroy(): void &lt;i&gt;(Overrides MovingObject.Destroy)&lt;/i&gt;&lt;br&gt;+ setShield(): void&lt;br&gt;+ setDoubleScore(): void&lt;br&gt;+ setFastFire(): void&lt;br&gt;+ setDoubleGun(): void&lt;br&gt;+ isSpawning(): boolean&lt;br&gt;+ isShieldOn(): boolean&lt;br&gt;+ isDoubleScoreOn(): boolean&lt;br&gt;- resetValues(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=560;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="600" y="80" width="450" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_Player_MovingObject" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;entryDx=0;entryDy=0.5;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="cls_MovingObject" target="cls_Player" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="530" y="250" as="sourcePoint" />
+            <mxPoint x="590" y="250" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

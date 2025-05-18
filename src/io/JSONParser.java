@@ -52,6 +52,7 @@ public class JSONParser {
 			ScoreData data = new ScoreData();
 			data.setScore(obj.getInt("score"));
 			data.setDate(obj.getString("date"));
+			data.setDifficultyMode(obj.optString("difficultyMode", Constants.DifficultyLevel.EASY.toString()));
 			dataList.add(data);
 		}
 		
@@ -72,6 +73,7 @@ public class JSONParser {
 			JSONObject obj = new JSONObject();
 			obj.put("score", data.getScore());
 			obj.put("date", data.getDate());
+			obj.put("difficultyMode", data.getDifficultyMode());
 			
 			jsonList.put(obj);
 			

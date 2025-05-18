@@ -23,8 +23,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cls_Player" value="Player&lt;br&gt;&lt;hr&gt;- heading: Vector2D&lt;br&gt;- acceleration: Vector2D&lt;br&gt;- accelerating: boolean&lt;br&gt;- fireRate: long&lt;br&gt;- spawning: boolean&lt;br&gt;- shieldOn: boolean&lt;br&gt;...&lt;br&gt; (Texture changes with difficulty, fires non-enemy lasers)&lt;hr&gt;+ Player(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ Destroy(): void&lt;br&gt;+ setShield(): void&lt;br&gt;+ isSpawning(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=280;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
-          <mxGeometry x="40" y="520" width="260" height="280" as="geometry" />
+        <mxCell id="cls_Player" value="Player&lt;br&gt;&lt;hr&gt;- heading: Vector2D&lt;br&gt;- acceleration: Vector2D&lt;br&gt;- accelerating: boolean&lt;br&gt;- fireRate: long&lt;br&gt;- spawning: boolean&lt;br&gt;- shieldOn: boolean&lt;br&gt;...&lt;br&gt; (Texture changes with difficulty, fires non-enemy lasers)&lt;hr&gt;+ Player(pos: Vector2D, vel: Vector2D, maxVel: double, tex: BufferedImage, gs: GameState)&lt;br&gt;+ update(dt: float): void&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ Destroy(): void&lt;br&gt;+ setShield(): void&lt;br&gt;+ isSpawning(): boolean" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=290;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="40" y="520" width="260" height="290" as="geometry" />
         </mxCell>
         <mxCell id="rel_Player_Moving" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_Player" target="cls_MovingObject" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -92,13 +92,13 @@
           <mxGeometry x="40" y="220" width="320" height="120" as="geometry" />
         </mxCell>
         <mxCell id="pkg_states_title" value="Paquete: states" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" parent="1" vertex="1">
-          <mxGeometry x="20" y="800" width="180" height="30" as="geometry" />
+          <mxGeometry x="20" y="810" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="cls_State" value="&lt;i&gt;State&lt;/i&gt;&lt;br&gt;&lt;hr&gt;- {static} currentState: State&lt;hr&gt;+ &lt;i&gt;update(dt: float): void&lt;/i&gt;&lt;br&gt;+ &lt;i&gt;draw(g: Graphics): void&lt;/i&gt;&lt;br&gt;+ {static} getCurrentState(): State&lt;br&gt;+ {static} changeState(newState: State): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=140;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
           <mxGeometry x="40" y="840" width="300" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="cls_GameState" value="GameState&lt;br&gt;&lt;hr&gt;- player: Player&lt;br&gt;- movingObjects: ArrayList&amp;lt;MovingObject&amp;gt;&lt;br&gt;- score: int&lt;br&gt;- lives: int&lt;br&gt;- meteors: int&lt;br&gt;- isPaused: boolean&lt;hr&gt;+ GameState()&lt;br&gt;+ update(dt: float): void &lt;i&gt;(handles pause input)&lt;/i&gt;&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ addScore(value: int, pos: Vector2D): void&lt;br&gt;+ divideMeteor(meteor: Meteor): void&lt;br&gt;+ gameOver(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=230;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
-          <mxGeometry x="360" y="1010" width="320" height="230" as="geometry" />
+        <mxCell id="cls_GameState" value="GameState&lt;br&gt;&lt;hr&gt;- player: Player&lt;br&gt;- movingObjects: ArrayList&amp;lt;MovingObject&amp;gt;&lt;br&gt;- score: int&lt;br&gt;- lives: int&lt;br&gt;- meteors: int&lt;br&gt;- isPaused: boolean&lt;hr&gt;+ GameState()&lt;br&gt;+ update(dt: float): void &lt;i&gt;(handles pause input)&lt;/i&gt;&lt;br&gt;+ draw(g: Graphics): void&lt;br&gt;+ addScore(value: int, pos: Vector2D): void&lt;br&gt;+ divideMeteor(meteor: Meteor): void&lt;br&gt;+ gameOver(): void" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=240;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;overflow=hidden;" parent="1" vertex="1">
+          <mxGeometry x="360" y="1010" width="320" height="240" as="geometry" />
         </mxCell>
         <mxCell id="rel_Game_State" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;startArrow=none;startFill=0;dashed=0;strokeWidth=1;" parent="1" source="cls_GameState" target="cls_State" edge="1">
           <mxGeometry relative="1" as="geometry">

@@ -101,7 +101,7 @@ public class Ufo extends MovingObject{
 		
 		// disparo
 		
-		if(fireRate > Constants.FIRERATE_UFO) {
+		if(fireRate > Constants.UFO_FIRE_RATE) {
 			
 			Vector2D toPlayer = gameState.getPlayer().getCenter().subtract(getCenter());
 			

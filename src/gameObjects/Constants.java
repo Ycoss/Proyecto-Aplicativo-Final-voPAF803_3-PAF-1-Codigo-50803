@@ -30,7 +30,7 @@ public class Constants {
 	
 	// Propiedades del jugador
 	
-	public static final int FIRERATE = 300;
+	public static final int FIRERATE = 400;
 	public static final double DELTAANGLE = 0.1;
 	public static final double ACC = 0.2;
 	public static final double PLAYER_MAX_VEL = 7.0;
@@ -59,13 +59,14 @@ public class Constants {
 	public static final int UFO_SCORE = 40;
 	public static final long UFO_SPAWN_RATE = 10000;
 	
-	// Valores ajustados por dificultad (inicializados a FÁCIL)
+	// Valores ajustados por dificultad (que serán establecidos en setDifficulty)
 	
-	public static double METEOR_INIT_VEL = BASE_METEOR_INIT_VEL;
-	public static double METEOR_MAX_VEL = BASE_METEOR_MAX_VEL;
-	public static int UFO_MAX_VEL = BASE_UFO_MAX_VEL; // Este es el valor que se sobrescribe en setDifficulty
-	public static long UFO_FIRE_RATE = BASE_UFO_FIRE_RATE;
-	
+	public static double METEOR_INIT_VEL;
+	public static double METEOR_MAX_VEL;
+	public static int UFO_MAX_VEL;
+	public static long UFO_FIRE_RATE;
+	public static double UFO_LASER_SPEED;
+
 	// Enum de dificultad y configuración actual
 	
 	public enum DifficultyLevel {
@@ -80,40 +81,38 @@ public class Constants {
 	public static void setDifficulty(DifficultyLevel difficulty) {
 		currentDifficulty = difficulty;
 
-		// Define los valores de referencia basados en el "HARDCORE anterior"
-		double refMeteorInitVel = BASE_METEOR_INIT_VEL * 4;
-		double refMeteorMaxVel = BASE_METEOR_MAX_VEL * 4;
-		long   refUfoFireRate = BASE_UFO_FIRE_RATE / 4; // Menor es más rápido
+		METEOR_INIT_VEL = BASE_METEOR_INIT_VEL;
+		METEOR_MAX_VEL = BASE_METEOR_MAX_VEL;
 
 		switch (difficulty) {
 			case EASY:
-				// Configuración basada en el MEDIUM "pasado" de nuestra versión
-				UFO_MAX_VEL = 7; // Reducido de 14 a 7
-				FIRERATE_UFO = 2500;
+				UFO_MAX_VEL = 3;
+				UFO_FIRE_RATE = 5000L;
 				UFO_LASER_SPEED = 21.0;
 
 				Assets.currentPlayerShipTexture = Assets.player;
-				Assets.currentDoubleGunPlayerTexture = Assets.doubleGunPlayer; // Azul por defecto
+				Assets.currentDoubleGunPlayerTexture = Assets.doubleGunPlayer;
 				Assets.currentPlayerLaserTexture = Assets.blueLaser;
 				break;
 			case MEDIUM:
-				// Configuración basada en la versión anterior (Space Ship Game episode 24_final)
 				UFO_MAX_VEL = 3;
-				FIRERATE_UFO = 1000;
+				UFO_FIRE_RATE = 1000L;
 				UFO_LASER_SPEED = 15.0;
 
+				METEOR_INIT_VEL = BASE_METEOR_INIT_VEL * 1.5;
+				METEOR_MAX_VEL = BASE_METEOR_MAX_VEL * 1.5;
+
 				Assets.currentPlayerShipTexture = Assets.playerShipGreen;
-				Assets.currentDoubleGunPlayerTexture = Assets.playerShipGreen; // Verde
+				Assets.currentDoubleGunPlayerTexture = Assets.playerShipGreen;
 				Assets.currentPlayerLaserTexture = Assets.greenLaser;
 				break;
 			case HARDCORE:
-				// Configuración actual para HARDCORE (pendiente de nueva definición)
-				UFO_MAX_VEL = (int) PLAYER_MAX_VEL; // Relativa al jugador
-				FIRERATE_UFO = 750; // Más rápido
-				UFO_LASER_SPEED = PLAYER_MAX_VEL * 1.5; // Láser del OVNI también más rápido
+				UFO_MAX_VEL = 10;
+				UFO_FIRE_RATE = 750L;
+				UFO_LASER_SPEED = PLAYER_MAX_VEL * 1.5;
 
 				Assets.currentPlayerShipTexture = Assets.playerShipRed;
-				Assets.currentDoubleGunPlayerTexture = Assets.playerShipRed; // Rojo
+				Assets.currentDoubleGunPlayerTexture = Assets.playerShipRed;
 				Assets.currentPlayerLaserTexture = Assets.redLaser;
 				break;
 		}
@@ -148,8 +147,5 @@ public class Constants {
 	public static final long DOUBLE_GUN_TIME = 36000L;
 	
 	public static final int SCORE_STACK = 1000;
-	
-	public static int FIRERATE_UFO;
-	public static double UFO_LASER_SPEED;
 	
 }

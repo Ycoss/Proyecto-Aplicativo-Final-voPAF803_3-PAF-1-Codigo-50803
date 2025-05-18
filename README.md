@@ -61,8 +61,8 @@ A continuación, se detalla cómo el proyecto busca cumplir con los criterios de
 
 **1. Funcionamiento (20 puntos)**
 *   **Excelente:** El juego compila y ejecuta exitosamente. Todas las funcionalidades descritas anteriormente han sido implementadas y probadas. Se incluyen los archivos `.java`, el archivo `mymanifest.mf` para la creación del JAR, y la librería `json-20180813.jar`.
-    *   **Compilación:** `javac -Xlint:all -cp ".;json-20180813.jar" -d bin src/gameObjects/*.java src/graphics/*.java src/input/*.java src/main/*.java src/math/*.java src/states/*.java src/io/*.java src/ui/*.java`
-    *   **Ejecución (JAR):** `jar cvfm AsteroidsGame.jar mymanifest.mf -C bin . -C res .` seguido de `java -jar AsteroidsGame.jar` (asegurándose que `res` y la librería JSON estén accesibles).
+    *   **Compilación:** `javac -d bin -cp ".\src;.\json-20180813.jar" src/main/Window.java src/gameObjects/*.java src/graphics/*.java src/input/*.java src/io/*.java src/math/*.java src/states/*.java src/ui/*.java`
+    *   **Ejecución (JAR):** `jar cvfm AsteroidsGame.jar mymanifest.mf -C bin . -C res .` seguido de `java -jar AsteroidsGame.jar` (asegurándose que la librería JSON esté accesible).
 
 **2. Entorno Gráfico (20 puntos)**
 *   **Excelente:** Se implementan las librerías estándar de Java AWT y Swing (`JFrame`, `Canvas`, `Graphics`, `BufferedImage`, etc.) para crear y gestionar el entorno gráfico del juego. Los recursos gráficos (imágenes, sprites) se cargan y muestran adecuadamente.
@@ -111,7 +111,7 @@ A continuación, se detalla cómo el proyecto busca cumplir con los criterios de
 
 3.  **Compilación (desde la raíz del proyecto `JuegoDeAsteroides/`):
     ```bash
-    javac -Xlint:all -cp ".;json-20180813.jar" -d bin src/gameObjects/*.java src/graphics/*.java src/input/*.java src/main/*.java src/math/*.java src/states/*.java src/io/*.java src/ui/*.java
+    javac -d bin -cp ".\src;.\json-20180813.jar" src/main/Window.java src/gameObjects/*.java src/graphics/*.java src/input/*.java src/io/*.java src/math/*.java src/states/*.java src/ui/*.java
     ```
 
 4.  **Creación del Archivo JAR (desde la raíz del proyecto `JuegoDeAsteroides/`):

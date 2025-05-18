@@ -100,34 +100,37 @@ public class ScoreState extends State{
 		
 		Arrays.sort(auxArray, scoreComparator);
 		
+		// Adjusted X positions for three columns
+		Vector2D scoreHeaderPos = new Vector2D(Constants.WIDTH / 2 - 250, 100);
+		Vector2D modeHeaderPos = new Vector2D(Constants.WIDTH / 2, 100); // Centered
+		Vector2D dateHeaderPos = new Vector2D(Constants.WIDTH / 2 + 250, 100);
 		
-		Vector2D scorePos = new Vector2D(
-				Constants.WIDTH / 2 - 200,
-				100
-				);
-		Vector2D datePos = new Vector2D(
-				Constants.WIDTH / 2 + 200,
-				100
-				);
+		Text.drawText(g, Constants.SCORE, scoreHeaderPos, true, Color.BLUE, Assets.fontBig);
+		Text.drawText(g, "MODE", modeHeaderPos, true, Color.BLUE, Assets.fontBig); // New MODE header
+		Text.drawText(g, Constants.DATE, dateHeaderPos, true, Color.BLUE, Assets.fontBig);
 		
-		Text.drawText(g, Constants.SCORE, scorePos, true, Color.BLUE, Assets.fontBig);
-		Text.drawText(g, Constants.DATE, datePos, true, Color.BLUE, Assets.fontBig);
-		
-		scorePos.setY(scorePos.getY() + 40);
-		datePos.setY(datePos.getY() + 40);
+		// Data positions, using copy constructor
+		Vector2D scoreDataPos = new Vector2D(scoreHeaderPos);
+		Vector2D modeDataPos = new Vector2D(modeHeaderPos);
+		Vector2D dateDataPos = new Vector2D(dateHeaderPos);
+
+		scoreDataPos.setY(scoreDataPos.getY() + 40);
+		modeDataPos.setY(modeDataPos.getY() + 40);
+		dateDataPos.setY(dateDataPos.getY() + 40);
 		
 		for(int i = auxArray.length - 1; i > -1; i--) {
-			
 			ScoreData d = auxArray[i];
 			
-			Text.drawText(g, Integer.toString(d.getScore()), scorePos, true, Color.WHITE, Assets.fontMed);
-			Text.drawText(g, d.getDate(), datePos, true, Color.WHITE, Assets.fontMed);
+			Text.drawText(g, Integer.toString(d.getScore()), scoreDataPos, true, Color.WHITE, Assets.fontMed);
+			// Get and draw difficulty mode
+			String mode = d.getDifficultyMode() != null ? d.getDifficultyMode() : "N/A"; // Handle null just in case
+			Text.drawText(g, mode.toUpperCase(), modeDataPos, true, Color.WHITE, Assets.fontMed);
+			Text.drawText(g, d.getDate(), dateDataPos, true, Color.WHITE, Assets.fontMed);
 			
-			scorePos.setY(scorePos.getY() + 40);
-			datePos.setY(datePos.getY() + 40);
-			
+			scoreDataPos.setY(scoreDataPos.getY() + 40);
+			modeDataPos.setY(modeDataPos.getY() + 40);
+			dateDataPos.setY(dateDataPos.getY() + 40);
 		}
-		
 	}
 	
 }
