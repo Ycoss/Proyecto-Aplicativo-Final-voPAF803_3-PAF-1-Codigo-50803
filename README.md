@@ -22,7 +22,7 @@ Durante el desarrollo del proyecto, se implementaron varias mejoras adicionales 
     *   El color de la nave cambia: **Azul** (Easy), **Verde** (Medium), **Rojo** (Hardcore).
     *   La velocidad de los asteroides y OVNIs, así como la frecuencia y dificultad de sus disparos, aumenta en los modos más difíciles.
     *   El juego se vuelve progresivamente más desafiante.
-*   **Pausa Mejorada:** Ahora se puede pausar el juego con la **barra espaciadora**. Dentro del menú de pausa, también se puede consultar la pantalla de controles para recordar cómo jugar.
+*   **Pausa Mejorada:** Ahora se puede pausar el juego con la **barra espaciadora** en tiempo real. Dentro del menú de pausa, también se puede consultar la pantalla de controles para recordar cómo jugar.
 
 ## Descripción del Proyecto
 
