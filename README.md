@@ -129,12 +129,12 @@ A continuación, se detalla cómo el proyecto busca cumplir con los criterios de
 4. **Compilación en eclipse (desde la raíz del proyecto `JuegoDeAsteroides/`):
    Se puede compilar tanto como java proyect o maven proyect
 
-6.  **Compilación (desde la raíz del proyecto `JuegoDeAsteroides/`):
+5.  **Compilación (desde la raíz del proyecto `JuegoDeAsteroides/`):
     ```bash
     javac -d bin -cp ".\src;.\json-20180813.jar" src/main/Window.java src/gameObjects/*.java src/graphics/*.java src/input/*.java src/io/*.java src/math/*.java src/states/*.java src/ui/*.java
     ```
 
-5.  **Creación del Archivo JAR "opcional" (desde la raíz del proyecto `JuegoDeAsteroides/`):
+6.  **Creación del Archivo JAR "opcional" (desde la raíz del proyecto `JuegoDeAsteroides/`):
     ```bash
     jar cvfm AsteroidsGame.jar mymanifest.mf -C bin . -C res .
     ```
