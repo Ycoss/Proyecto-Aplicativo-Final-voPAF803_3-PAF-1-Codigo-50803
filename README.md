@@ -122,23 +122,25 @@ A continuación, se detalla cómo el proyecto busca cumplir con los criterios de
     └── README.md
     ```
 
-3.  **Compilación (desde la raíz del proyecto `JuegoDeAsteroides/`):
+3.  **Ejecución del JAR (desde la raíz del proyecto `JuegoDeAsteroides/`):
+    ```bash
+    java -jar AsteroidsGame.jar
+    ```
+4. **Compilación en eclipse (desde la raíz del proyecto `JuegoDeAsteroides/`):
+   Se puede compilar tanto como java proyect o maven proyect
+
+6.  **Compilación (desde la raíz del proyecto `JuegoDeAsteroides/`):
     ```bash
     javac -d bin -cp ".\src;.\json-20180813.jar" src/main/Window.java src/gameObjects/*.java src/graphics/*.java src/input/*.java src/io/*.java src/math/*.java src/states/*.java src/ui/*.java
     ```
 
-4.  **Creación del Archivo JAR (desde la raíz del proyecto `JuegoDeAsteroides/`):
+5.  **Creación del Archivo JAR "opcional" (desde la raíz del proyecto `JuegoDeAsteroides/`):
     ```bash
     jar cvfm AsteroidsGame.jar mymanifest.mf -C bin . -C res .
     ```
     (Asegúrate que el archivo `mymanifest.mf` tenga la siguiente línea como mínimo, terminando con una nueva línea:
     `Main-Class: main.Window`
     )
-
-5.  **Ejecución del JAR (desde la raíz del proyecto `JuegoDeAsteroides/`):
-    ```bash
-    java -jar AsteroidsGame.jar
-    ```
 
 ## Nuevos Aprendizajes y Conclusiones
 
