@@ -11,6 +11,19 @@
 *   Armando Díaz Castillo - 00562897
 *   Jorge Carlos Zapata Villanueva - 543478
 
+## Mejoras Implementadas
+
+Durante el desarrollo del proyecto, se implementaron varias mejoras adicionales para enriquecer la experiencia de juego:
+
+*   **Controles Mejorados:** Ahora el jugador puede mover la nave tanto con las teclas de flecha como con las teclas **WASD**.
+*   **Disparo Mejorado:** Además de disparar con la tecla **P**, ahora también se puede disparar haciendo **click izquierdo** del mouse.
+*   **Botón de Controles:** Se añadió un botón en el **menú principal** para acceder a una pantalla de controles, donde se explica cómo jugar y qué teclas usar.
+*   **Modos de Dificultad:** Se implementaron **tres modos de juego**: Easy, Medium y Hardcore. Dependiendo del modo seleccionado:
+    *   El color de la nave cambia: **Azul** (Easy), **Verde** (Medium), **Rojo** (Hardcore).
+    *   La velocidad de los asteroides y OVNIs, así como la frecuencia y dificultad de sus disparos, aumenta en los modos más difíciles.
+    *   El juego se vuelve progresivamente más desafiante.
+*   **Pausa Mejorada:** Ahora se puede pausar el juego con la **barra espaciadora**. Dentro del menú de pausa, también se puede consultar la pantalla de controles para recordar cómo jugar.
+
 ## Descripción del Proyecto
 
 Este proyecto es una recreación del clásico juego "Asteroides" desarrollado en Java, aplicando los principios de la Programación Orientada a Objetos. El jugador controla una nave espacial con el objetivo de destruir asteroides y OVNIs enemigos, evitando colisiones para sobrevivir y obtener la puntuación más alta.
@@ -90,7 +103,7 @@ A continuación, se detalla cómo el proyecto busca cumplir con los criterios de
     *   JDK (Java Development Kit) 8 o superior.
     *   La librería `json-20180813.jar` (incluida en el repositorio o en la raíz del proyecto al compilar/ejecutar).
 
-2.  **Estructura de Carpetas Esperada:**
+2.  **Estructura de Carpetas:**
     ```
     JuegoDeAsteroides/
     ├── src/

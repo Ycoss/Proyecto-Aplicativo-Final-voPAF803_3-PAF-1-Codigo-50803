@@ -74,8 +74,6 @@ public abstract class MovingObject extends GameObject{
 	
 	private void objectCollision(MovingObject a, MovingObject b) {
 		
-		System.out.println("Collision check between: " + a.getClass().getSimpleName() + "[" + System.identityHashCode(a) + "] and " + b.getClass().getSimpleName() + "[" + System.identityHashCode(b) + "]");
-
 		Player p = null;
 		Laser l = null;
 
@@ -95,21 +93,17 @@ public abstract class MovingObject extends GameObject{
 		    l = (Laser)b;
 		
 		if(p != null && p.isSpawning()) {
-			System.out.println("  Player is spawning. Collision ignored.");
 			return;
 		}
 		
 		if(a instanceof Meteor && b instanceof Meteor) {
-			System.out.println("  Meteor-Meteor collision. Ignoring.");
 			return;
 		}
 
 		if(p != null && l != null){ // Si un jugador y un láser están involucrados
 			if(!l.isEnemy()) { // Si el láser NO es enemigo (es del jugador)
-				System.out.println("  Player - Own Laser collision. Ignoring.");
 				return; // Ignorar colisión del jugador con su propio láser
 			} else { // Si el láser ES enemigo
-				System.out.println("  Player - Enemy Laser collision. Destroying both.");
 				p.Destroy();
 				l.Destroy();
 				return;
@@ -117,18 +111,15 @@ public abstract class MovingObject extends GameObject{
 		}
 		
 		if (aIsLaser && bIsLaser) {
-			System.out.println("  Laser-Laser collision. Ignoring.");
 			return;
 		}
 		
 		if(p != null){ // p es el jugador involucrado
 			if(aIsPlayer && b instanceof PowerUp){
-				System.out.println("  Player collects PowerUp (a=Player, b=PowerUp).");
 				((PowerUp)b).executeAction();
 				b.Destroy();
 				return;
 			} else if(bIsPlayer && a instanceof PowerUp){
-				System.out.println("  Player collects PowerUp (a=PowerUp, b=Player).");
 				((PowerUp)a).executeAction();
 				a.Destroy();
 				return;
@@ -136,11 +127,9 @@ public abstract class MovingObject extends GameObject{
 		}
 		
 		if (a instanceof PowerUp || b instanceof PowerUp) {
-			System.out.println("  PowerUp involved with non-Player. Ignoring destruction of PowerUp here.");
             return; // Evita que los PowerUps se destruyan con objetos que no sean el Jugador
         }
 
-		System.out.println("  General collision. Destroying " + a.getClass().getSimpleName() + " and " + b.getClass().getSimpleName());
 		a.Destroy(); 
 		b.Destroy(); 
 		
